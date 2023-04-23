@@ -1,0 +1,103 @@
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))() 
+
+local Window = Library.CreateLib("Muhammadplayzroblox2's Snipers [BETA] GUI", "Synapse") 
+
+local Tab = Window:NewTab("Hacks") 
+
+local Section = Tab:NewSection("Sniper Mods") 
+
+Section:NewButton("mod sniper", "ButtonInfo", function() 
+
+local function Mod()
+
+   local player = game.Players.LocalPlayer
+
+   local bp = player.Backpack
+
+   local Sniper = bp:WaitForChild("Sniper")
+
+   local SniperConfig = Sniper:WaitForChild("Configuration")
+
+   print("Player Died")
+
+   wait()
+
+   Sniper.CurrentAmmo.Value = 999999999999 --didnt work but it doesn't stop script, so
+
+   SniperConfig.ShotCooldown.Value = 0
+
+   SniperConfig.AmmoCapacity.Value = 999999999999 --same as above
+
+   SniperConfig.RecoilMin.Value = 0
+
+   SniperConfig.RecoilMax.Value = 0
+
+   SniperConfig.RecoilDecay.Value = 0
+
+   SniperConfig.HitDamage.Value = math.huge
+
+   SniperConfig.TotalRecoilMax.Value = 0
+
+end
+
+Mod() --so u dont need to respawn for u to be able to use this lol
+
+game.Players.LocalPlayer.CharacterAdded:Connect(Mod)
+
+print("Clicked") 
+
+end)
+
+Section:NewButton("no reload" ,"ButtonInfo", function() local mt = getrawmetatable(game)
+
+make_writeable(mt)
+
+local namecall = mt.__namecall
+
+mt.__namecall = newcclosure(function(self, ...)
+
+   local method = getnamecallmethod()
+
+   local args = {...}
+
+   if method == "FireServer" and tostring(self) == "WeaponReloadRequest" then
+
+      return
+
+   end
+
+   return namecall(self, table.unpack(args))
+
+end)
+
+game.Players.LocalPlayer.CharacterAdded:Connect(Mod)
+
+print("Clicked")
+
+end)
+
+local Section = Tab:NewSection("Other") 
+
+Section:NewButton("Hitbox Customizer", "ButtonInfo", function() loadstring(game:HttpGet('https://pastebin.com/raw/JgtddWA3'))()
+
+game.Players.LocalPlayer.CharacterAdded:Connect(Mod)
+
+print("Clicked")
+
+end)
+
+Section:NewButton("Infinite Money", "ButtonInfo", function() local args = {
+
+   [1] = game:GetService("Players").LocalPlayer,
+
+   [2] = "999999999999" --change to your liking 
+
+}
+
+game:GetService("ReplicatedStorage").updateCash:FireServer(unpack(args))
+
+game.Players.LocalPlayer.CharacterAdded:Connect(Mod)
+
+print("Clicked")
+
+end)
